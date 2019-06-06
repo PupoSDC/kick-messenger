@@ -1,23 +1,10 @@
-/**
- *
- * App
- *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- */
-
 import React from 'react';
+import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { Switch, Route } from 'react-router-dom';
-
-import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import MessageContainer from 'components/MessageContainer/MessageContainer';
 import './style.scss';
 
-const App = () => (
+const App = ({ messages }) => (
   <div className="app-wrapper">
     <Helmet
       titleTemplate="%s - React.js Boilerplate"
@@ -25,14 +12,27 @@ const App = () => (
     >
       <meta name="description" content="A React.js Boilerplate application" />
     </Helmet>
-    <Header />
-    <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/features" component={FeaturePage} />
-      <Route path="" component={NotFoundPage} />
-    </Switch>
-    <Footer />
+    <h1>Hello World!</h1>
+    <MessageContainer messages={ messages } />
   </div>
 );
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    messages: state.messages
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onDelete: id => {
+
+    }
+  };
+};
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

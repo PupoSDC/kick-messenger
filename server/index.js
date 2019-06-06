@@ -52,7 +52,7 @@ mongoose.connect('mongodb://localhost/klickMesseger', { useNewUrlParser: true })
 mongoose.promise = global.Promise;
 
 // Start server
-db.on('error', logger.error('DB connection error'));
+db.on('error', () => logger.error('DB connection error'));
 db.once('open', () => {
   app.listen(port, host, (err) => {
     if (err) {
