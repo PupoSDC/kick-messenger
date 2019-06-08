@@ -1,21 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import './style.scss';
+import cx from 'classnames';
+import './style.scss';
 
-const Message = ({ message }) => {
-  const {text, sender, timestamp} = message;
-  const time = (new Date(timestamp)).toDateString();
+const Message = ({ message, user }) => {
+  const {text, sender, timestamp, isPrivate} = message;
+  const time = converTimestampToFrenchDate(timestamp);
+  const isOwnMessage = (user === sender);
+
+  const messageBoxClasses = cx({
+   'message-box': true,
+   'message-box-private': isPrivate,
+   'message-box-own': isOwnMessage
+  });
+
   return (
-    <div>
-      <p>{text}</p>
-      <p>{sender} at {time}</p>
+    <div className={messageBoxClasses}>
+      <div class="flex-box">
+        <div className="main-content">
+          <h5>{sender}</h5>
+          <p>{text}</p>
+        </div>
+      </div>
+      <div className="footer">
+        { isPrivate ? "Message Privé" : (<p>Envoyé le {time}</p>) }
+      </div>
     </div>
   );
 };
 
-// List.propTypes = {
-//   component: PropTypes.func.isRequired,
-//   items: PropTypes.array,
-// };
+function converTimestampToFrenchDate(timestamp) {
+  return new Date(timestamp).toJSON().slice(0,10).split('-').reverse().join('/')
+}
 
 export default Message;
