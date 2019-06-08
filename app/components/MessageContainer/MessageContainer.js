@@ -5,12 +5,12 @@ import './style.scss';
 
 const MessageContainer = ({ messages, user }) => {
   if (messages && messages.length) {
-  	const messageElements = messages.map(message =>
-  	  <div className="message">
-        <Message message={ message } user = { user } key={ message._id } />
+    const messageElements = messages.map((message) => (
+      <div className="message" key={message._id}>
+        <Message message={message} user={user} />
       </div>
-    );
-  	return (<div className="message-container">{ messageElements }</div>);
+    ));
+    return (<div className="message-container">{ messageElements }</div>);
   }
   return (<div className="message-container-empty">No messages</div>);
 };
