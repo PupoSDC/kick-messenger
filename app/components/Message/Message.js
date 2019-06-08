@@ -29,6 +29,11 @@ const Message = ({ message, user }) => {
   );
 };
 
+Message.propTypes = {
+  user: PropTypes.string.isRequired,
+  message: PropTypes.object.isRequired,
+};
+
 function converTimestampToFrenchDate(timestamp) {
   return new Date(timestamp).toJSON().slice(0,10).split('-').reverse().join('/')
 }
