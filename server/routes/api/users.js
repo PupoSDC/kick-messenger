@@ -3,10 +3,10 @@ const express = require('express');
 const router = express.Router();
 
 router.route('/login')
-  .get((req, res) => {
-    const { user } = req.body;
+  .get((req, res, next) => {
+    const { user } = req.query;
     req.session.user = user;
-    res.status(200).json(user);
+    next();
   });
 
 module.exports = router;
