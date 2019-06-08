@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { POST_MESSAGE, GET_MESSAGES } from './types';
 
-const apiUrl = 'http://localhost:4000/posts';
-
 export const postMessage = ({ text, isPrivate }) => {
   return (dispatch) => {
     return axios.post('/api/messages', {text, isPrivate})

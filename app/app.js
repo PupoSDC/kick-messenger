@@ -22,6 +22,7 @@ import 'styles/theme.scss';
 import App from 'containers/App/App';
 import rootReducer from 'reducers';
 import { getMessages } from 'actions/messages';
+import { getUser } from 'actions/users';
 
 const openSansObserver = new FontFaceObserver('Open Sans', {});
 openSansObserver.load().then(() => {
@@ -32,6 +33,7 @@ openSansObserver.load().then(() => {
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 store.dispatch(getMessages());
+store.dispatch(getUser());
 
 const MOUNT_NODE = document.getElementById('app');
 

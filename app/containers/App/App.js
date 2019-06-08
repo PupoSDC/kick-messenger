@@ -4,22 +4,19 @@ import { Helmet } from 'react-helmet';
 import MessageContainer from 'components/MessageContainer/MessageContainer';
 import './style.scss';
 
-const App = ({ messages }) => (
+const App = ({ messages, user }) => (
   <div className="app-wrapper">
-    <Helmet
-      titleTemplate="%s - React.js Boilerplate"
-      defaultTitle="React.js Boilerplate"
-    >
+    <Helmet titleTemplate="%s - React.js Boilerplate"  defaultTitle="React.js Boilerplate">
       <meta name="description" content="A React.js Boilerplate application" />
     </Helmet>
-    <h1>Hello World!</h1>
-    <MessageContainer messages={ messages } />
+    <MessageContainer messages={ messages } user={ user } />
   </div>
 );
 
 const mapStateToProps = state => {
   return {
-    messages: state.messages
+    messages: state.messages,
+    user: state.user
   };
 };
 
