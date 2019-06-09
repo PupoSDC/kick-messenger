@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import './style.scss';
+import './Message.scss';
 
 const converTimestampToFrenchDate = (timestamp) => new Date(timestamp)
   .toJSON()
@@ -32,7 +32,7 @@ const Message = ({ message, user }) => {
         </div>
       </div>
       <div className="footer">
-        { isPrivate ? 'Message Privé' : (<p>Envoyé le {time}</p>) }
+        { isPrivate ? 'Message Privé' : `Envoyé le ${time}` }
       </div>
     </div>
   );
