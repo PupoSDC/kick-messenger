@@ -1,19 +1,40 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import MessagePoster from './MessagePoster';
 
 describe('<MessagePoster />', () => {
-  it('Should display login Information if no user', () => {
-    const renderedComponent = shallow(<MessagePoster user={''} />);
-    expect(renderedComponent.hasClass('type-area-no-user')).toBe(true);
+  it('Should be disabled if no user', () => {
+    const renderedComponent = mount(<MessagePoster user={''} onPostMessage={() => {}} />);
+    expect(renderedComponent.find('.text-container > textarea[disabled=true]')).toHaveLength(1);
+    expect(renderedComponent.find('.send-container > button[disabled=true]')).toHaveLength(1);
   });
 
-  if ('Should ') {
-    it('Should show all messages', () => {
-      const messages = [{ _id: 1, text: 'demo' }, { _id: 2, text: 'demo' }, { _id: 3, text: 'demo' }];
-      const renderedComponent = shallow(<MessagePoster messages={messages} user={'someUser'} />);
-      expect(renderedComponent.find('.message')).toHaveLength(messages.length);
-    });
-  }
+  it('Should trigger onPostMessage on send button pressed', () => {
+    const testMessage = 'Hello World';
+    const onPostMessageMock = jest.fn((message) => message);
+    const renderedComponent = mount(<MessagePoster user={'Pedro'} onPostMessage={onPostMessageMock} />);
+
+    expect(renderedComponent.find('.text-container textarea[disabled=true]')).toHaveLength(0);
+    expect(renderedComponent.find('.send-container button[disabled=true]')).toHaveLength(0);
+
+    renderedComponent.find('.text-container > textarea').first().simulate('change', { target: { value: testMessage } });
+    renderedComponent.find('.send-container > button').first().simulate('submit');
+    expect(onPostMessageMock).toHaveBeenCalled();
+    expect(onPostMessageMock.mock.results[0].value).toEqual({ text: testMessage, isPrivate: false });
+  });
+
+  it('Should be possible to switch between private and public messages', () => {
+    const renderedComponent = mount(<MessagePoster user={'Pedro'} onPostMessage={() => {}} />);
+
+    renderedComponent.find('.private-selector > button[value="true"]').first().simulate('click');
+    expect(renderedComponent.find('.private-selector > button[value="true"][disabled=true]')).toHaveLength(1);
+    expect(renderedComponent.find('.private-selector > button[value="false"][disabled=true]')).toHaveLength(0);
+    expect(renderedComponent.state().isPrivate).toEqual(true);
+
+    renderedComponent.find('.private-selector > button[value="false"]').first().simulate('click');
+    expect(renderedComponent.find('.private-selector > button[value="true"][disabled=true]')).toHaveLength(0);
+    expect(renderedComponent.find('.private-selector > button[value="false"][disabled=true]')).toHaveLength(1);
+    expect(renderedComponent.state().isPrivate).toEqual(false);
+  });
 });

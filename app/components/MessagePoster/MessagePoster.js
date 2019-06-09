@@ -16,6 +16,10 @@ class MessagePoster extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  getPlaceholder() {
+    return this.isUserConnected() ? 'tapez votre message...' : 'S\'il vous plait, login avant de poster.';
+  }
+
   handleTextChange(event) {
     const text = event.target.value;
     this.setState({ text });
@@ -43,26 +47,14 @@ class MessagePoster extends React.Component {
     return (
       <form className="type-area" onSubmit={this.handleSubmit}>
         <div className="private-selector">
-          <button
-            type="button"
-            value="false"
-            onClick={this.handlePrivateChange}
-            disabled={isPrivate}
-          >Message
-          </button>
-          <button
-            type="button"
-            value="true"
-            onClick={this.handlePrivateChange}
-            disabled={!isPrivate}
-          >Note
-          </button>
+          <button type="button" onClick={this.handlePrivateChange} value="false" disabled={!isPrivate}>Message</button>
+          <button type="button" onClick={this.handlePrivateChange} value="true" disabled={isPrivate}>Note</button>
         </div>
         <div className="main-area">
           <div className="text-container">
             <textarea
               value={text}
-              placeholder="tapez votre message..."
+              placeholder={this.getPlaceholder()}
               disabled={!this.isUserConnected()}
               onChange={this.handleTextChange}
             >
@@ -81,8 +73,8 @@ class MessagePoster extends React.Component {
 
 MessagePoster.propTypes = {
   text: PropTypes.string,
-  user: PropTypes.string.isRequired,
   isPrivate: PropTypes.bool,
+  user: PropTypes.string.isRequired,
   onPostMessage: PropTypes.func.isRequired
 };
 
