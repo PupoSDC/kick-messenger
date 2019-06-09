@@ -33,6 +33,7 @@ router.route('/messages')
         if (error) {
           return res.status(500).json({ message: 'Upsss... Your message could not be saved.' });
         }
+        req.io.sockets.emit('newMessage', savedMessage);
         return res.status(200).json(savedMessage);
       });
     }
