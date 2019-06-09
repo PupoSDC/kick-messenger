@@ -22,7 +22,7 @@ import 'styles/theme.scss';
 import App from 'containers/App/App';
 import rootReducer from 'reducers';
 import socket from 'utils/socket';
-import { getMessages, newMessageFromSocket } from 'actions/messages';
+import { getMessages, newMessage } from 'actions/messages';
 import { getUser } from 'actions/users';
 
 
@@ -37,8 +37,8 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 store.dispatch(getMessages());
 store.dispatch(getUser());
 
-socket.on('newMessage', (newMessage) => {
-  store.dispatch(newMessageFromSocket(newMessage));
+socket.on('newMessage', (message) => {
+  store.dispatch(newMessage(message));
 });
 
 const MOUNT_NODE = document.getElementById('app');

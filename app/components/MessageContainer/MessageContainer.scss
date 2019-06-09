@@ -1,6 +1,11 @@
 .message-container {
   display: flex;
   flex-direction: column-reverse;
+  border: 2px solid #F1F1F1;
+
+  .message {
+    display: block;
+  }
 
   .message + .message {
     margin-bottom: 1em;

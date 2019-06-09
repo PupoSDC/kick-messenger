@@ -6,7 +6,7 @@ import MessageContainer from 'components/MessageContainer';
 import MessagePoster from 'components/MessagePoster';
 import { postMessage } from 'actions/messages';
 
-import './style.scss';
+import './App.scss';
 
 const App = ({ messages, user, onPostMessage }) => (
   <div className="app-wrapper">
