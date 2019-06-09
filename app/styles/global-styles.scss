@@ -4,6 +4,18 @@ body {
   width: 100%;
 }
 
+:root {
+  --main-bg-color: #FDFDFD;
+  --second-bg-color: #F1F1F1;
+  --third-bg-color: #D1D1D1;
+  --special-bg-color: #2C414C;
+
+  --main-text-color: #2A52B6;
+  --second-text-color: #2C414C;
+  --third-text-color: #B1B1B1;
+  --special-text-color: #FDFDFD;
+}
+
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -13,7 +25,7 @@ body.fontLoaded {
 }
 
 #app {
-  background-color: #fafafa;
+  background-color: var(--main-bg-color);
   min-height: 100%;
   min-width: 100%;
 }

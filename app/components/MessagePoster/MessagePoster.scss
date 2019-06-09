@@ -1,9 +1,9 @@
 .type-area {
   .private-selector {
     display: flex;
-    padding: 0 0.5em;
-    border-left: 2px solid #F1F1F1;
-    border-right: 2px solid #F1F1F1;
+    padding: 0.5em 0.5em 0 0.5em;
+    border-left: 2px solid var(--third-bg-color);
+    border-right: 2px solid var(--third-bg-color);
 
     button {
       background: none;
@@ -17,20 +17,20 @@
     }
 
     button[disabled] {
-      color: #2A52B6;
-      border-color: #2A52B6;
+      color: var(--main-text-color);
+      border-color: var(--main-text-color);
     }
   }
   .main-area {
     width: 100%;
     display: flex;
     align-items: center;
-    border: 2px solid #F1F1F1;
+    border: 2px solid var(--third-bg-color);
 
     .text-container {
       flex-grow: 1;
       display: flex;
-      border-right: 2px solid #F1F1F1;
+      border-right: 2px solid var(--third-bg-color);
       margin: 2em 5px 2em 0;
 
       textarea {
@@ -40,7 +40,7 @@
         flex-grow: 1;
         margin: 0 0.2em;
         padding: 0.5em;
-        height: 7em;
+        height: 5em;
         border: 0 0 1px 0;
       }
 
@@ -57,7 +57,7 @@
         border-radius: 10px;
         width: 60px;
         height: 60px;
-        background-color: #2A52B6;
+        background-color: var(--main-text-color);
 
         img {
           width: 80%;

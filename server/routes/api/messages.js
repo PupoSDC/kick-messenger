@@ -11,7 +11,7 @@ router.route('/messages')
     Message
       .find({ $or: [{ isPrivate: false }, { isPrivate: true, sender: user }] })
       .limit(10)
-      .sort({ timestamp: 1 })
+      .sort({ timestamp: -1 })
       .exec((error, messages) => {
         if (error) {
           return res.status(500).json({ message: 'Upssss.... We are unable to show you your messages right now.' });

@@ -6,8 +6,8 @@
     flex-direction: row;
 
     .main-content {
-      background-color: #F1F1F1;
-      color: #63686C;
+      background-color: var(--second-bg-color);
+      color: var(--second-text-color);
       padding: 1em 1em;
       border-radius: 0.5em;
       flex-grow: 1;
@@ -15,7 +15,8 @@
     }
   }
   .footer {
-    color: #BCBCBC;
+    color: var(--third-text-color);
+    font-size: 0.8em;
   }
 
   h5, p {
@@ -27,7 +28,7 @@
   .flex-box {
     flex-direction: row-reverse;
     .main-content {
-      background-color: #E9EDF7;
+      background-color: var(--third-bg-color);
     }
   }
 
@@ -39,7 +40,8 @@
 .message-box.message-box-private {
   .flex-box {
     .main-content {
-      background-color: #B1B1B1;
+      color: var(--special-text-color);
+      background-color: var(--special-bg-color);
     }
   }
 }
