@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Message from 'components/Message';
-import './style.scss';
+import './MessageContainer.scss';
 
 const MessageContainer = ({ messages, user }) => {
   if (messages && messages.length) {
