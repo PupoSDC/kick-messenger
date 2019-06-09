@@ -35,6 +35,7 @@ class MessagePoster extends React.Component {
     const { text, isPrivate } = this.state;
     const { onPostMessage } = this.props;
     onPostMessage({ text, isPrivate });
+    this.setState({ text: '' });
   }
 
   isUserConnected() {

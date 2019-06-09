@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { POST_MESSAGE, GET_MESSAGES } from './types';
+import { POST_MESSAGE, GET_MESSAGES, NEW_MESSAGE } from './types';
 
 export const postMessageSuccess = (message) => ({
   type: POST_MESSAGE,
@@ -9,6 +9,11 @@ export const postMessageSuccess = (message) => ({
 export const getMessagesSuccess = (messages) => ({
   type: GET_MESSAGES,
   payload: messages
+});
+
+export const newMessageFromSocket = (message) => ({
+  type: NEW_MESSAGE,
+  payload: message
 });
 
 export const postMessage = ({ text, isPrivate }) => (dispatch) => axios.post('/api/messages', { text, isPrivate })
