@@ -1,13 +1,13 @@
 {
-  "name": "react-redux-boilerplate",
+  "name": "kick-messeger",
   "version": "1.0.0",
-  "description": "A minimal react-redux boilerplate with all the best practices",
+  "description": "A code challenge proposed by kicklox",
   "repository": {
     "type": "git",
-    "url": "git://github.com/flexdinesh/react-redux-boilerplate.git"
+    "url": "git://github.com/ppuposad"
   },
   "license": "MIT",
-  "author": "Dinesh Pandiyan",
+  "author": "Pedro Pupo Sa da Costa, from the boilerplate by Dinesh Pandiyan",
   "scripts": {
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",

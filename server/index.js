@@ -15,6 +15,7 @@ const setup = require('./middlewares/frontendMiddleware');
 const customHost = argv.host || process.env.HOST;
 const prettyHost = customHost || 'localhost';
 const host = customHost || null;
+const mongoHost = process.env.MONGODB_URI || 'mongodb://localhost/klickMesseger';
 
 // get API routes
 const userRoutes = require('./routes/api/users');
@@ -32,7 +33,7 @@ const server = app.listen(port, host, (err) => {
 const io = socketio.listen(server);
 
 // Connect to DataBase
-mongoose.connect('mongodb://localhost/klickMesseger', { useNewUrlParser: true });
+mongoose.connect(mongoHost, { useNewUrlParser: true });
 mongoose.promise = global.Promise;
 db.on('error', () => logger.error('DB connection error'));
 db.once('open', () => logger.info('mongoDB connected!'));
