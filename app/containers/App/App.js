@@ -13,8 +13,8 @@ const App = ({ messages, user, onPostMessage }) => (
     <Helmet titleTemplate="%s - React.js Boilerplate" defaultTitle="React.js Boilerplate">
       <meta name="description" content="A React.js Boilerplate application" />
     </Helmet>
-    <MessageContainer messages={messages} user={user} />
-    <MessagePoster onPostMessage={onPostMessage} user={user} />
+    <MessageContainer className="message-container" messages={messages} user={user} />
+    <MessagePoster className="message-poster" onPostMessage={onPostMessage} user={user} />
   </div>
 );
 

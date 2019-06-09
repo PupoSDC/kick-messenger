@@ -1,8 +1,19 @@
 .app-wrapper {
   max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
+  margin: 1vh auto;
   display: flex;
-  min-height: 100%;
+  height: 98vh;
+  overflow: hidden;
   padding: 0 16px;
   flex-direction: column;
+
+  .message-container {
+    flex-grow: 1;
+    overflow-y: scroll;
+    padding: 0 10px;
+  }
+
+  .message-poster {
+
+  }
 }
