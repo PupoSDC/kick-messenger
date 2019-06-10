@@ -14,6 +14,7 @@ class MessagePoster extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handlePrivateChange = this.handlePrivateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   getPlaceholder() {
@@ -34,8 +35,16 @@ class MessagePoster extends React.Component {
     event.preventDefault();
     const { text, isPrivate } = this.state;
     const { onPostMessage } = this.props;
-    onPostMessage({ text, isPrivate });
-    this.setState({ text: '' });
+    if (text) {
+      onPostMessage({ text, isPrivate });
+      this.setState({ text: '' });
+    }
+  }
+
+  handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      this.handleSubmit(event);
+    }
   }
 
   isUserConnected() {
@@ -58,6 +67,7 @@ class MessagePoster extends React.Component {
               placeholder={this.getPlaceholder()}
               disabled={!this.isUserConnected()}
               onChange={this.handleTextChange}
+              onKeyDown={this.handleKeyDown}
             >
             </textarea>
           </div>

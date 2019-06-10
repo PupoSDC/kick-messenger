@@ -37,4 +37,16 @@ describe('<MessagePoster />', () => {
     expect(renderedComponent.find('.private-selector > button[value="false"][disabled=true]')).toHaveLength(1);
     expect(renderedComponent.state().isPrivate).toEqual(false);
   });
+
+  it('Should be possible to submit a message by pressing Enter on textarea', () => {
+    const testMessage = 'Hello World';
+    const onPostMessageMock = jest.fn((message) => message);
+    const renderedComponent = mount(<MessagePoster user={'Pedro'} onPostMessage={onPostMessageMock} />);
+
+    renderedComponent.find('.text-container > textarea').first().simulate('change', { target: { value: testMessage } });
+    renderedComponent.find('.text-container > textarea').first().simulate('keydown', { key: 'Enter' });
+
+    expect(onPostMessageMock).toHaveBeenCalled();
+    expect(onPostMessageMock.mock.results[0].value).toEqual({ text: testMessage, isPrivate: false });
+  });
 });
