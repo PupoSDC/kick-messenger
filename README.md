@@ -54,7 +54,6 @@ git clone git@github.com:PupoSDC/kick-messenger.git
 cd kick-messenger && npm install
 npm start
 ```
-<<<<<<< HEAD
 ou vous pouvez aussi enssayer l'app dans [Heroku](https://kick-messenger.herokuapp.com/).
 
 N'oubliez pas de faire le login avant de commencer a poster:
@@ -78,32 +77,5 @@ Le project a ete developé en 9 phases distincts, identifie avec des tags des co
 | KLK-8 | Improved styles before delivery                  |
 | KLK-9 | Setting up CI/CD for the application and         |
 
-=======
-Pour le bon funcionement de l'app, vous devez avoir MongoDB installé dans votre machine local.
-
-Vous pouvez aussi enssayer l'app dans [Heroku](https://kick-messenger.herokuapp.com/).
-
-N'oubliez pas de faire le login avant de commencer a poster:
-
-- <https://kick-messenger.herokuapp.com/Api/Login?user=Amanda>
-- <http://localhost:3000/Api/login?user=Pedro>
-
-### Histoire du Project
-
-Le project a ete developé en 9 phases distincts, identifie avec des tags des commits suivants :
-
-|  tag  | Description                                      |
-|-------|--------------------------------------------------|
-| KLK-1 | Boiler plate set up                              |
-| KLK-2 | Creation of Server side API                      |
-| KLK-3 | Boilerplated app workflow                        |
-| KLK-4 | Create React functional components               |
-| KLK-5 | Create React stateful component for user input   |
-| KLK-6 | Composed app to be functional                    |
-| KLK-7 | Increase test coveraged of the app               |
-| KLK-8 | Improved styles before delivery                  |
-| KLK-9 | Setting up CI/CD for the application and         |
-
->>>>>>> KLK-10 Added Readme for final delivery
 Idealement, le development des composants aurait été fait avec la methodologie `Test driven Development`, mais a cause
 de mon manque d'experience avec Enzyme et Jest ce n'etait pas posssible.
