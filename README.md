@@ -1,106 +1,81 @@
-<img src="https://raw.githubusercontent.com/flexdinesh/react-redux-boilerplate/master/app/components/Header/images/banner.jpg" alt="react redux boilerplate banner" align="center" />
+# Kick-Messenger
 
-<br />
+Une interface qui permetre écrire, poster et lister des messages.
+Un message est composé d’un texte et d’un champ précisant s’il est public ou privé.
+Tous les utilisators peuvent voir des messages publics, mais seul l'utilisateur qui a écrit le message privé le verra.
 
-<div align="center">A minimal, beginner friendly React-Redux boilerplate with all the industry best practices</div>
+## App
 
-<br />
+### API
 
-<div align="center">
-  <!-- Dependency Status -->
-  <a href="https://david-dm.org/flexdinesh/react-redux-boilerplate">
-    <img src="https://david-dm.org/flexdinesh/react-redux-boilerplate.svg" alt="Dependency Status" />
-  </a>
-  <!-- devDependency Status -->
-  <a href="https://david-dm.org/flexdinesh/react-redux-boilerplate#info=devDependencies">
-    <img src="https://david-dm.org/flexdinesh/react-redux-boilerplate/dev-status.svg" alt="devDependency Status" />
-  </a>
-  <!-- Build Status -->
-  <a href="https://travis-ci.org/flexdinesh/react-redux-boilerplate">
-    <img src="https://travis-ci.org/flexdinesh/react-redux-boilerplate.svg" alt="Build Status" />
-  </a>
-  <!-- Gitter -->
-  <a href="https://gitter.im/flexdinesh/react-redux-boilerplate">
-    <img src="https://camo.githubusercontent.com/54dc79dc7da6b76b17bc8013342da9b4266d993c/68747470733a2f2f6261646765732e6769747465722e696d2f6d78737462722f72656163742d626f696c6572706c6174652e737667" alt="Gitter Chat" />
-  </a>
-</div>
+Un REST API simple a été dẽveloppé avec Node.js avec les endpoints suivants :
 
-<br />
+| endpoint                   | Request Type | Commentaire                                                           |
+|----------------------------|--------------|-----------------------------------------------------------------------|
+| `/api/login?user=username` | `GET`        | Pour se connecter en tant que nouvel utilisateur                      |
+| `/api/messages`            | `GET`        | Récupère les 10 messages les plus récents visibles par  l'utilisateur |
+| `/api/messages`            | `POST`       | Poster un nouveau message au serveur                                  |
 
-<div align="center">
-  <sub>Created by <a href="https://twitter.com/flexdinesh">Dinesh Pandiyan</a></sub>
-</div>
+Le client se connectera également au serveur à travers un socket pour recevoir de nouveaux messages lorsqu'ils sont
+publiés. Les données sont stockées dans une instance mongoDB.
 
+### Client
 
-## Why? [![start with why](https://img.shields.io/badge/start%20with-why%3F-brightgreen.svg?style=flat)](http://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action)
+L'app est structurée de la manière suivante :
 
-The whole React community knows and will unanimously agree that [react-boilerplate](https://github.com/react-boilerplate/react-boilerplate) is the ultimate starter template for kickstarting a React project. It's setup with all the industry best practices and standards. But it also has a lot more than what you just need to start a react-redux app. It took me quite some time to get my head around what was happening in the codebase and it's clearly not for starters. They quote this right in their readme,
-
-> Please note that this boilerplate is **production-ready and not meant for beginners**! If you're just starting out with react or redux, please refer to https://github.com/petehunt/react-howto instead. If you want a solid, battle-tested base to build your next product upon and have some experience with react, this is the perfect start for you.
-
-So it involves a lot of additional learning curve to get started with [react-boilerplate](https://github.com/react-boilerplate/react-boilerplate). That's why I forked it, stripped it down and made this _leaner, **beginner friendly**_ boilerplate without all the additional complexity.
+| Dossier       | Commentaire                                                  |
+|---------------|---------------------------------------------------------------------------|
+| `actions`     | Interactions client avec l'API et actions modificatrices d''état          |
+| `components`  | Composants de base dissociés de l'état de l'app                           |
+| `Containers`  | Composants qui interagissent avec le gestionnaire d'état                  |
+| `reducers`    | Changement d'état par des actions envoyées par des composants `Container` |
 
 
-## Features
+### Characteristiques
 
-This boilerplate features all the latest tools and practices in the industry.
+- CI avec tracis
+- CD avec github
+- Gestion d'état avec Redux
+- Composants conçus avec React
+- Tests unitaires avec Jest et Enzyme (\~70% de couverture de test)
 
-- _React.js_ - **React 16**✨, React Router 5
-- _Redux.js_ - Redux saga, Redux immutable and Reselect
-- _Babel_ - ES6, ESNext, Airbnb and React/Recommended config
-- _Webpack_ - **Webpack 4**✨, Hot Reloading, Code Splitting, Optimized Prod Build and more
-- _Test_ - Jest with Enzyme
-- _Lint_ - ESlint
-- _Styles_ - SCSS Styling
+### Problèmes connus / Suggestions pour continuer le développement
 
-Here are a few highlights to look out for in this boilerplate 
+- L'app ne supporte pas le défilement des messages, à cause d'une mauvaise implémentation des `flexbox` niches.
+- L'app manque une sisteme de gestion d'errours dans le client.
+- Integration de test unitaire Insufficiente (doit etre >90%)
 
-<dl>
-  <dt>Instant feedback</dt>
-  <dd>Enjoy the best DX (Developer eXperience) and code your app at the speed of thought! Your saved changes to the CSS and JS are reflected instantaneously without refreshing the page. Preserve application state even when you update something in the underlying code!</dd>
+### Testing
 
-  <dt>Next generation JavaScript</dt>
-  <dd>Use template strings, object destructuring, arrow functions, JSX syntax and more, today.</dd>
+Vous pouvez demarrer cette app localement avec ces instructions:
 
-  <dt>Component Specific Styles</dt>
-  <dd>Separate styles for each component. Style in the good old scss way but still keep it abstracted for each component.</dd>
+```sh
+git clone git@github.com:PupoSDC/kick-messenger.git
+cd kick-messenger && npm install
+npm start
+```
+ou vous pouvez aussi enssayer l'app dans [Heroku](https://kick-messenger.herokuapp.com/).
 
-  <dt>Industry-standard routing</dt>
-  <dd>It's natural to want to add pages (e.g. `/about`) to your application, and routing makes this possible.</dd>
+N'oubliez pas de faire le login avant de commencer a poster:
 
-  <dt>Predictable state management</dt>
-  <dd>Unidirectional data flow allows for change logging and time travel debugging.</dd>
+- <https://kick-messenger.herokuapp.com/Api/Login?user=Amanda>
+- <http://localhost:3000/Api/login?user=Pedro>
 
-  <dt>SEO</dt>
-  <dd>We support SEO (document head tags management) for search engines that support indexing of JavaScript content. (eg. Google)</dd>
-</dl>
+### Histoire du Project
 
-But wait... there's more!
+Le project a ete developé en 9 phases distincts, identifie avec des tags des commits suivants :
 
-  - *The best test setup:* Automatically guarantee code quality and non-breaking
-    changes. (Seen a react app with 99% test coverage before?)
-  - *The fastest fonts:* Say goodbye to vacant text.
-  - *Stay fast*: Profile your app's performance from the comfort of your command
-    line!
-  - *Catch problems:* TravisCI setup included by default, so your
-    tests get run automatically on each code push.
+|  tag  | Description                                      |
+|-------|--------------------------------------------------|
+| KLK-1 | Boiler plate set up                              |
+| KLK-2 | Creation of Server side API                      |
+| KLK-3 | Boilerplated app workflow                        |
+| KLK-4 | Create React functional components               |
+| KLK-5 | Create React stateful component for user input   |
+| KLK-6 | Composed app to be functional                    |
+| KLK-7 | Increase test coveraged of the app               |
+| KLK-8 | Improved styles before delivery                  |
+| KLK-9 | Setting up CI/CD for the application and         |
 
-
-## Quick start
-
-1. Clone this repo using `git clone https://github.com/flexdinesh/react-redux-boilerplate.git`
-2. Move to the appropriate directory: `cd react-redux-boilerplate`.<br />
-3. Run `yarn` or `npm install` to install dependencies.<br />
-4. Run `npm start` to see the example app at `http://localhost:3000`.
-
-Now you're ready build your beautiful React Application!
-
-
-## Info
-
-These are the things I stripped out from [react-boilerplate](https://github.com/react-boilerplate/react-boilerplate) - _github project rules, ngrok tunneling, shjs, service worker, webpack dll plugin, i18n, styled-components, code generators and a few more._
-
-
-## License
-
-MIT license, Copyright (c) 2018 Dinesh Pandiyan.
+Idealement, le development des composants aurait été fait avec la methodologie `Test driven Development`, mais a cause
+de mon manque d'experience avec Enzyme et Jest ce n'etait pas posssible.
